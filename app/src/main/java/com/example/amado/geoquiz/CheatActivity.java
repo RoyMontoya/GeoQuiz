@@ -1,6 +1,7 @@
 package com.example.amado.geoquiz;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ public class CheatActivity extends ActionBarActivity {
     public static final String EXTRA_ANSWER_IS_TRUE ="com.example.amado.geoquiz.answer_is_true";
     private boolean mAnswerIsTrue;
     private Button mShowAnswer;
+    private TextView mSdkText;
     private boolean mWasAnswered;
     private TextView mAnswerTextView;
     private static final String DID_CHEAT = "cheater";
@@ -27,6 +29,11 @@ public class CheatActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
+
+
+        mSdkText = (TextView)findViewById(R.id.sdk_text_view);
+        String sdk = "API level "+Build.VERSION.SDK_INT;
+        mSdkText.setText(sdk);
 
         mAnswerTextView = (TextView)findViewById(R.id.answerTextView);
         mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
